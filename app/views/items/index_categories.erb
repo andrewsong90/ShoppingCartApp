@@ -1,0 +1,71 @@
+<br>
+<div class="title">Item list</div><br><br>
+
+
+<div class="select">
+  <%= form_tag items_categories_path do %>
+      <td><%= select_tag "category_num",options_from_collection_for_select(@categories, "id", "name"), :prompt => "All categories"%></td>
+      <td><%= submit_tag "Show" %></td>
+  <% end %>
+</div><br>
+
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Category</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Stock</th>
+  </tr>
+
+
+  <% @items.each do |item| %>
+      <tr>
+        <td><%= item.id %></td>
+        <td><%= item.category.name %></td>
+        <td><%= item.name %></td>
+        <td><%= item.price %></td>
+        <td><%= item.inStock %></td>
+
+        <td><%= link_to "Details", item_path(item.id) %></td>
+
+        <% if current_user && current_user.status==User.STATUS_SHOPPER %>
+            <%= form_tag add_path(item.id) do %>
+                <td><%=  number_field_tag :quantity, nil, :class =>"num" %></td>
+                <td><%= submit_tag "Add to Cart"%></td>
+            <% end %>
+            <%= form_tag list_add_item_path(item.id) do %>
+                <td><%= select_tag "list_num",options_from_collection_for_select(@lists, "id", "name"), :prompt => "Select a List" %></td>
+                <td><%= submit_tag "Add to List" %></td>
+            <% end %>
+
+
+            <% if false %>
+                <td><%= link_to "Add to List",list_add_item_path(:id=>item.id) %></td>
+            <% end %>
+        <% end %>
+      </tr>
+  <% end %>
+</table>
+
+
+
+<br><br><br>
+
+<div class="link">
+  <% if current_user %>
+      <% if current_user.status==User.STATUS_SHOPPER%>
+          <%= link_to "View My Past Orders", orders_path  %>
+      <% elsif current_user.status==User.STATUS_SHOPKEEPER %>
+          <%= link_to "New Item", new_item_path %><br>
+          <%= link_to "My Items", my_item_path %><br>
+          <%= link_to "View Customers' Orders", orders_path %>
+      <% else %>
+          <%= link_to "New Category", new_category_path %>
+          <%= link_to "Categories", categories_path %>
+      <% end %>
+  <% end %>
+</div>
+
+

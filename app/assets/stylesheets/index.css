@@ -1,0 +1,86 @@
+a:hover {color: #CDB38B}
+
+.title{
+    color: FIREBRICK;
+    font-weight: 900;
+    font-family: Helvetica serif;
+    font-size: 200%;
+    text-align: center;
+}
+
+.user_nav{
+    color: navy;
+    font-weight: 700;
+    font-family: "Arial";
+    font-size: 120%;
+    text-align: right;
+}
+
+.select{
+    width: 15.4%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "Helvetica";
+}
+
+
+.label{
+    color: blueviolet;
+    font-family: "Helvetica";
+    font-size: 115%;
+}
+
+.item{
+    position: relative;
+    left: 5%;
+    font-family: "Helvetica";
+    font-size: 130%;
+}
+
+.message{
+    text-align: center;
+    font-family: "Helvetica";
+    font-weight: 770;
+    font-size: 130%;
+}
+
+#welcome{
+    font-family: Arial;
+    font-size: 190%;
+    font-weight: 800;
+    text-align: center;
+}
+
+.num{
+    width: 50px;
+}
+
+.link {
+    color: blue;
+    font-family: "Helvetica Neue";
+    font-size: 125%;
+    text-align: center;
+
+}
+
+.table_tag{
+    font-family: helvetica;
+    text-align: center;
+    font-size: 115%;
+    font-weight: 750;
+}
+
+
+th{
+    background-color:  #71B7B7
+}
+
+table{
+    border: 1px solid black;
+    text-align: center;
+    font-family: "Arial";
+    font-size: 110%;
+    text-align: center;
+    margin: auto;
+    left: 30%;
+}

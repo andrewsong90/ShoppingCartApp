@@ -1,0 +1,47 @@
+
+<div class="title"><%= "LISTS" %></div><br><br>
+
+<div class="link"><%= link_to "Create new Lists", new_list_path %></div><br>
+
+<div class="select">
+<%= form_tag list_search_path do %>
+    <%= text_field_tag :search_data, "type in other's e-mail" %>
+    <td><%= submit_tag "Search"%></td>
+<% end %>
+</div><br><br>
+
+<table>
+  <tr>
+    <th>Public Lists</th>
+  </tr>
+
+  <% @public_lists.each do |list| %>
+    <tr>
+        <td><%= "#{list.name}" %></td>
+        <td><%= link_to "details", list_path(list.id) %></td>
+    </tr>
+
+  <% end %>
+
+</table><br>
+
+<table>
+  <tr>
+    <th>Private Lists</th>
+    <th></th>
+  </tr>
+
+  <% @private_lists.each do |list| %>
+      <tr>
+        <td><%= "#{list.name}" %></td>
+        <td><%= link_to "details", list_path(list.id) %></td>
+      </tr>
+
+  <% end %>
+
+</table><br>
+
+<div class="link">
+  <%= link_to "Main Page", items_path %>
+</div>
+

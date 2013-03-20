@@ -1,0 +1,21 @@
+<div class="title"> Categories </div><br>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Category</th>
+  </tr>
+
+
+  <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.id %></td>
+        <td><%= category.name %></td>
+        <td><%= link_to "Details", category_path(category.id) %></td>
+      </tr>
+  <% end %>
+</table><br><br>
+
+<div class="link">
+  <%= link_to "Main Page", items_path %>
+</div>

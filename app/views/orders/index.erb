@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="index.css"/>
+
+<div class="title">Past orders!!!</div>
+
+<% @orders.each do |order| %>
+    <p class="table_tag"><%= "Order by #{order.user.name} (user_id : #{order.user.id}) at #{order.created_at}" %></p>
+
+        <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+        </tr>
+          <% order.order_items.each do |items| %>
+              <% if current_user.id==items.keeper_id || current_user.status==User.STATUS_SHOPPER %>
+                  <tr>
+                    <td><%= items.item_id  %></td>
+                    <td><%= items.name  %></td>
+                    <td><%= items.price  %></td>
+                    <td><%= items.quantity  %></td>
+                    <td><%= items.price * items.quantity %></td>
+                    <td></td>
+                  </tr>
+              <% end %>
+          <% end %>
+
+        </table><br><br>
+
+<% end %>
+
+<div class="link">
+    <%= link_to "Main", items_path %>
+</div>
+<br>

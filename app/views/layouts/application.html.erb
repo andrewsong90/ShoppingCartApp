@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" href="index.css"/>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<br>
+<div id="welcome">
+  Welcome to 6.170 Shopping Mall
+</div>
+
+<!-- This navigation bar is always shown on the top, so the user can always access it-->
+<div class="user_nav">
+   <% if current_user%>
+      Welcome!! <%= current_user.name %> <br>
+      <%= link_to "My Account", user_account_path %>
+      <%= link_to "Log out", log_out_path %><br>
+      <% if current_user.status==User.STATUS_SHOPPER %>
+          <%= link_to "My Shopping Cart", carts_path %><br>
+          <%= link_to "My Shopping Lists", lists_path %>
+      <% end %>
+
+  <% else %>
+      <%=  link_to "Log in", log_in_path %>
+      <%=  link_to "Sign in", sign_up_path %>
+  <% end %>
+</div>
+
+<div id="page">
+    <% if flash[:notice] %>
+        <h3><p class="flash-notice"><%= flash[:notice] %></p></h3>
+    <% end %>
+</div>
+
+
+<%= yield %>
+
+</body>
+</html>

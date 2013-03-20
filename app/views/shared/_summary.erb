@@ -1,0 +1,41 @@
+<!-- This form is shared by "carts\index.erb" & "orders\confirm.erb"-->
+
+<table>
+
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Total Price</th>
+  </tr>
+
+  <% total =0 %>
+  <% @item_list.each do |key| %>
+      <% item=Item.find(key.item_id)%>
+      <% total += item.price * key.quantity %>
+      <tr>
+        <td><%= item.id %></td>
+        <td><%= item.name %></td>
+        <td><%= item.price %></td>
+
+        <!-- If this form is used in "carts\index.erb"-->
+        <% if request.path == "/carts" %>
+                <%= form_tag cart_item_update_path(item.id) do %>
+                    <td><%= number_field_tag :quantity, key.quantity, :class=>"num" %></td>
+                    <td><%= key.quantity * item.price%></td>
+                    <td><%= submit_tag "Update"%></td>
+                    <td><%= link_to "Details", item_path(item.id) %></td>
+                <% end %>
+        <!-- If this form is used in "orders\confirm.erb"-->
+        <% else %>
+            <td><%= key.quantity %></td>
+            <td><%= key.quantity * item.price%></td>
+        <% end %>
+
+
+      </tr>
+  <% end %>
+</table>
+
+<p class="message"> Subtotal : <%= total %></p>

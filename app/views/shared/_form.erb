@@ -1,0 +1,37 @@
+<!-- This form is used by "items#edit" && "items#new" -->
+<%= form_for @item do |f| %>
+    <% if @item.errors.any? %>
+        <div class="error_messages">
+          <h2>Form is Invalid</h2>
+          <ul>
+            <% for message in @item.errors.full_messages %>
+                <li><%= message %></li>
+            <% end  %>
+          </ul>
+        </div>
+    <% end %>
+    <%= f.hidden_field :keeper_id, :value => current_user.id %>
+    <p>
+      <%=  f.label :name %><br>
+      <%=  f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label :category %>
+      <%= f.collection_select(:category_id, @categories, :id, :name)  %>
+    </p>
+    <p>
+      <%= f.label :price %><br>
+      <%= f.text_field :price %>
+    </p>
+    <p>
+      <%= f.label :InStock %>
+      <%= f.number_field :inStock %>
+    </p>
+    <p>
+      <%=  f.label :description %><br>
+      <%=  f.text_area :desc %>
+    </p>
+
+
+    <p class="button"><%= f.submit %></p>
+<% end %>

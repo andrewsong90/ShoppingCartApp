@@ -1,0 +1,19 @@
+<div class="title"> Cart </div><br>
+
+<%= render :partial => "shared/summary" %>
+
+<br>
+
+<div class="select">
+<p>Saving cart to list will remove existing items in the list!</p>
+<%= form_tag cart_to_list_path do %>
+    <td><%= select_tag "list_num",options_from_collection_for_select(@lists, "id", "name"), :prompt => "Select a List" %></td>
+    <td><%= submit_tag "Save to List" %></td>
+<% end %>
+</div><br>
+
+<div class="link">
+    <%= link_to "Place order", order_confirm_path %>
+    <%= link_to "Main Page", items_path %>
+</div>
+

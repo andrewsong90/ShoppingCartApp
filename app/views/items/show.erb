@@ -1,0 +1,23 @@
+
+<div class="item">
+    <p><%= "Item #{@item.id} : #{@item.name}"%></p>
+    <p><%= "Category : #{@item.category.name}" %></p>
+    <p><%= "Price : #{@item.price}"%></p>
+    <p><%= "Supplier : #{User.find(@item.keeper_id).name} (Supplier ID : #{@item.id})" %></p>
+    <p><%= "Description :  #{@item.desc}" %></p><br>
+
+    <% if current_user && current_user.status==User.STATUS_SHOPPER %>
+        <%= form_tag add_path(@item.id) do %>
+            <td><%=  number_field_tag :quantity, :class => "num" %></td>
+            <td><%= submit_tag "Add to cart"%></td>
+        <% end %>
+    <% end %>
+</div><br>
+
+<div class="link">
+    <% if current_user && (current_user.id==@item.keeper_id) %>
+        <%= link_to "Edit", edit_item_path(@item.id) %><br>
+        <%= link_to "Remove", @item, :confirm => "Are you sure you want to delete?", :method => :delete %><br>
+    <% end %>
+    <%= link_to "Back to Main", items_path %>
+</div>

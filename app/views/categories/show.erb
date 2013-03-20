@@ -1,0 +1,11 @@
+<div class="title"><%= "Category #{@category.id}" %></div>
+
+<div class="item">
+  <p><%= "Category : #{@category.name}" %></p>
+  <p><%= "Description :  #{@category.description}" %></p><br>
+</div><br>
+
+<div class="link">
+      <%= link_to "Edit", edit_category_path(@category.id) %><br>
+      <%= link_to "Back to Main", items_path %>
+</div>

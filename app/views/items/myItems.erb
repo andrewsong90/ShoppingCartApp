@@ -1,0 +1,28 @@
+<div class="title">Items list</div><br>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Category</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Stock</th>
+    <th>Accumulated Sales</th>
+  </tr>
+
+  <% @items.each do |item| %>
+      <tr>
+        <td><%= item.id %></td>
+        <td><%= item.category.name %></td>
+        <td><%= item.name %></td>
+        <td><%= item.price %></td>
+        <td><%= item.inStock %></td>
+        <td><%= item.sales %></td>
+        <td><%= link_to "Details", item_path(item.id) %></td>
+      </tr>
+  <% end %>
+</table><br>
+
+<div class="link">
+  <%= link_to "Back to Main", items_path %>
+</div>

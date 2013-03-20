@@ -1,0 +1,47 @@
+<!-- This form is shared by "users#new" && "users#edit" -->
+
+<div class="item">
+  <%= form_for @user do |f| %>
+      <% if request.path=="/sign_up" %>
+          <p class="label"><%= "Below is relevant to logging in" %></p>
+          <p>
+            <%= f.label :email %><br>
+            <%= f.text_field :email %>
+          </p>
+          <p>
+            <%=  f.label :password %><br>
+            <%=  f.password_field :password %>
+          </p>
+
+          <p>
+            <%= f.label :password_confirmation %>    <br>
+            <%= f.password_field :password_confirmation %>
+          </p>
+          <p>
+            <%= f.label :Status %><br>
+            <%= f.label :Shopper %>
+            <%= f.radio_button :status, 2, :checked => true %>
+            <%=  f.label :Shopkeeper %>
+            <%= f.radio_button :status,1 %>
+            <%= f.label :Administrator %>
+            <%= f.radio_button :status,0 %>
+          </p>
+          <br>
+      <% end %>
+      <p class="label"><%= "Below is general information" %></p>
+      <p>
+        <%=  f.label :name %><br>
+        <%=  f.text_field :name %>
+      </p>
+
+      <p>
+        <%= f.label :Contact %>
+        <%= f.text_field :contact %>
+      </p>
+      <p>
+        <%= f.label :Address %><br>
+        <%= f.text_area :address %>
+      </p>
+      <p class="button"><%= f.submit %></p>
+  <% end %>
+</div>

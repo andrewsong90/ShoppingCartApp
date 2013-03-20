@@ -1,0 +1,15 @@
+<br>
+
+<% @lists.each do |list| %>
+
+    <p class="table_tag">
+      <%= "#{list.name}" %>
+      <%= link_to "details", list_path(list.id) %>
+    </p>
+
+<% end %><br>
+
+<div class="link">
+  <%= link_to "Back", lists_path %><br>
+  <%= link_to "Main Page", items_path %>
+</div>

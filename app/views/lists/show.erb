@@ -1,0 +1,62 @@
+<p class="table_tag"><%= "#{@list.name}" %></p>
+
+<p class="table_tag">
+  <%= "User : #{ @list.user.name}" %>
+</p>
+<p class="table_tag">
+    <%= "About this list :" %><br>
+    <%= @list.desc %>
+</p>
+<p class="table_tag">
+  <%= "Last Updated at : #{@list.updated_at.to_date}" %>
+</p>
+
+<table>
+
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Desired quantity</th>
+
+  </tr>
+
+
+  <% @list.list_items.each do |list_item| %>
+      <% item=Item.find(list_item.item_id)  %>
+      <tr>
+        <td><%= item.id %></td>
+        <td><%= item.name %></td>
+
+
+
+
+
+        <% if current_user.id == @list.user.id %> <!-- If the owner of the list is looking at the list -->
+            <%= form_tag list_update_item_path(:id=>item.id) do %>
+                <%= hidden_field_tag :list_num, @list.id %>
+                <td><%= number_field_tag :quantity, list_item.quantity %></td>
+                <td><%= submit_tag "Update"%></td>
+            <% end %>
+        <% else %>
+            <td><%= list_item.quantity %></td>
+        <% end %>
+
+        <td><%= "Updated at #{list_item.updated_at.to_date}" %></td>
+
+        <%= form_tag add_path(:id=>item.id) do %>
+            <%= hidden_field_tag :quantity, 1 %>
+            <td><%= submit_tag "Add to Cart"%></td>
+        <% end %>
+
+      </tr>
+  <% end %>
+</table><br><br>
+
+<div class="link">
+    <% if current_user.id == @list.user.id %>
+        <%= link_to "Import to Cart", import_to_cart_path(@list.id), :confirm => "This will remove existing items in the cart" %><br>
+        <%= link_to "Edit",edit_list_path(@list.id) %><br>
+        <%= link_to "Remove", @list, :confirm => "Are you sure you want to delete?", :method => :delete %><br><br>
+        <%= link_to "Back", lists_path %>
+    <% end %>
+</div>

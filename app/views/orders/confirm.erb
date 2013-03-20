@@ -1,0 +1,10 @@
+
+<div class="title"> Order Summary</div>
+<p class="message"> Please check your summary and press "confirm" to finalize your order!</p>
+
+<%= render :partial => "shared/summary" %>
+
+<div class="link">
+    <%= link_to "Confirm", new_order_path %>
+    <%= link_to "Back to Cart", carts_path %>
+</div>

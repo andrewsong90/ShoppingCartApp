@@ -1,0 +1,32 @@
+<br>
+<div class="title"><%= current_user.name %></div>
+
+<div class="item">
+  <p>
+    Name : <%= current_user.name %>
+  </p>
+  <p>
+    e-mail : <%= current_user.email %>
+  </p>
+  <p>
+    contact number : <%= current_user.contact %>
+  </p>
+  <p>
+    status :
+    <% if current_user.status==User.STATUS_SHOPPER %>
+        <%= "Shopper" %>
+    <% elsif current_user.status==User.STATUS_SHOPKEEPER %>
+        <%= "Shopkeeper" %>
+    <% else %>
+        <%= "Administrator" %>
+    <% end %>
+  </p>
+  <p>
+    address : <%= current_user.address %>
+  </p>
+</div>
+
+<div class="link">
+    <%= link_to "Edit", edit_user_path(current_user.id) %>
+    <%= link_to "Back to Main page", items_path %>
+</div>
